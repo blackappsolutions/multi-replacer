@@ -38,7 +38,7 @@ def main():
                 (key, val) = line.split()
                 mappingTable[key] = val
 
-    print(mappingTable)
+    # print(mappingTable)
 
     for dirpath, dnames, fnames in os.walk(folder):
         for file in fnames:
