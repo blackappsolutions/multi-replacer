@@ -13,7 +13,7 @@ def do_replace(dirpath, file):
 
     # Replace the target string
     for key in mappingTable:
-        if not (filedata.index(key) == -1):
+        if not (filedata.find(key) == -1):
             filedata = filedata.replace(key, mappingTable[key])
 
     # Write the file out again
