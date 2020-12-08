@@ -35,11 +35,11 @@ def main():
 
     with open(mappingFile) as mappingTableFile:
         for line in mappingTableFile:
-            if not line.startswith('#'):
+            if line.strip() and not line.startswith('#'):
                 (key, val) = line.split()
                 mappingTable[key] = val
 
-    # print(mappingTable)
+    print(mappingTable)
 
     for dirpath, dnames, fnames in os.walk(folder):
         for file in fnames:
