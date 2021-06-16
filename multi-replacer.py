@@ -24,7 +24,7 @@ def do_replace(dirpath, file):
 def main():
     if len(sys.argv) < 4:
         print(
-            f"Usage: {sys.argv[0]} FILE_EXTENSION FOLDER MAPPING_FILE\n"
+            f"Usage: {sys.argv[0]} FILE_EXTENSION FOLDER MAPPING_FILE OPTIONAL_MAPPING_DELIMITER\n"
             f" E.g.: {sys.argv[0]} properties test test/mapping.txt"
         )
         exit(1)
@@ -36,10 +36,13 @@ def main():
     with open(mappingFile) as mappingTableFile:
         for line in mappingTableFile:
             if line.strip() and not line.startswith('#'):
-                (key, val) = line.split()
-                mappingTable[key] = val
+                if len(sys.argv) == 5:
+                    (key, val) = line.split(sys.argv[4])
+                else:
+                    (key, val) = line.split()
+                mappingTable[key] = val.replace('\n', '')
 
-    print(mappingTable)
+    # print(mappingTable)
 
     for dirpath, dnames, fnames in os.walk(folder):
         for file in fnames:
